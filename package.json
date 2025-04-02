@@ -17,7 +17,9 @@
     "test": "vitest --ui",
     "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\""
   },
   "eslintConfig": {
     "extends": [
