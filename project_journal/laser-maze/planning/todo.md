@@ -22,10 +22,10 @@ Priority tasks focused on core gameplay functionality.
   - [x] Implement basic state providers
 
 ### 2. Core Game Logic (Days 4-10)
-- [ ] Implement 5x5 grid system
-  - [ ] Create grid data structure
-  - [ ] Implement grid state management
-  - [ ] Add grid cell component
+- [x] Implement 5x5 grid system
+  - [x] Create grid data structure
+  - [x] Implement grid state management
+  - [x] Add grid cell component
 - [ ] Create basic token system with essential types:
   - [ ] Laser source token
     - [ ] Base token structure

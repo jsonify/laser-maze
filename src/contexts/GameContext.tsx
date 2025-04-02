@@ -1,46 +1,45 @@
-/***********************************************
- * FILE: src/contexts/GameContext.tsx
- * CREATED: 2025-04-01 23:48:16
- *
- * PURPOSE:
- * This file manages the core game state for the Laser Maze application.
- * Provides context for game board state, player actions, and game progress.
- *
- * METHODS:
- * - GameContextProvider: Wraps children with game context
- ***********************************************/
+import React, { createContext, useContext, useCallback, useState } from 'react';
+import type { Grid, Token } from '../utils/grid';
+import { createGrid, placeToken, removeToken, rotateToken } from '../utils/grid';
 
-import React, { createContext, useCallback, useState } from 'react';
-import type { ReactNode } from 'react';
-
-interface GameState {
-  level: number;
-  score: number;
+interface GameContextType {
+  grid: Grid;
+  placeTokenInCell: (x: number, y: number, token: Token) => void;
+  removeTokenFromCell: (x: number, y: number) => void;
+  rotateTokenInCell: (x: number, y: number, angle: number) => void;
 }
 
-interface GameAction {
-  type: string;
-  payload?: unknown;
-}
+const GameContext = createContext<GameContextType | undefined>(undefined);
 
-interface GameContextValue {
-  gameState: GameState;
-  dispatchGameAction: (action: GameAction) => void;
-}
+export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [grid, setGrid] = useState<Grid>(() => createGrid());
 
-export const GameContext = createContext<GameContextValue | null>(null);
-
-export const GameContextProvider = ({ children }: { children: ReactNode }) => {
-  const [gameState] = useState<GameState>({ level: 1, score: 0 });
-
-  const dispatchGameAction = useCallback((action: GameAction) => {
-    // Placeholder for future implementation
-    console.log('Game action dispatched:', action);
+  const placeTokenInCell = useCallback((x: number, y: number, token: Token) => {
+    setGrid((currentGrid) => placeToken(currentGrid, x, y, token));
   }, []);
 
-  return (
-    <GameContext.Provider value={{ gameState, dispatchGameAction }}>
-      {children}
-    </GameContext.Provider>
-  );
+  const removeTokenFromCell = useCallback((x: number, y: number) => {
+    setGrid((currentGrid) => removeToken(currentGrid, x, y));
+  }, []);
+
+  const rotateTokenInCell = useCallback((x: number, y: number, angle: number) => {
+    setGrid((currentGrid) => rotateToken(currentGrid, x, y, angle));
+  }, []);
+
+  const value = {
+    grid,
+    placeTokenInCell,
+    removeTokenFromCell,
+    rotateTokenInCell,
+  };
+
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
+};
+
+export const useGame = () => {
+  const context = useContext(GameContext);
+  if (context === undefined) {
+    throw new Error('useGame must be used within a GameProvider');
+  }
+  return context;
 };

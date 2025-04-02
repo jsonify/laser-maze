@@ -22,7 +22,12 @@
     "baseUrl": "src"
   },
   "include": [
-    "src"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/types/*.d.ts"
   ],
-  "types": ["vitest/globals", "@testing-library/jest-dom"]
+  "types": ["vitest/globals", "@testing-library/jest-dom"],
+  "typeRoots": ["./node_modules/@types", "./src/types"]
 }
