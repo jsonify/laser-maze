@@ -1,7 +1,15 @@
 import React from 'react';
+import { GameContextProvider } from '../contexts/GameContext';
+import { SettingsContextProvider } from '../contexts/SettingsContext';
 
 const App: React.FC = () => {
-  return <div>Laser Maze App</div>;
+  return (
+    <GameContextProvider>
+      <SettingsContextProvider>
+        <div>Laser Maze App</div>
+      </SettingsContextProvider>
+    </GameContextProvider>
+  );
 };
 
 export default App;
