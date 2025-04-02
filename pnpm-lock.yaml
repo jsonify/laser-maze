@@ -26,7 +26,7 @@ dependencies:
 
 devDependencies:
   '@testing-library/jest-dom':
-    specifier: ^5.16.5
+    specifier: ^5.17.0
     version: 5.17.0
   '@testing-library/react':
     specifier: ^13.4.0
