@@ -43,4 +43,26 @@ This file records architectural and implementation decisions using a list format
 - Implemented provider components with initial state
 - Set up TypeScript interfaces for type safety
 - Added comprehensive test coverage
+
+## Token System Implementation Architecture
+
+**Date**: 2025-04-02 13:13:32
+
+**Decision**: Implemented token system using separate class-based components:
+- Base token types and interfaces in src/types/tokens.ts
+- Individual token implementations (LaserToken, MirrorToken, TargetToken)
+- Centralized token exports through index.ts
+
+**Rationale**: 
+- Clear separation of concerns between token types
+- Type-safe implementation with TypeScript interfaces
+- Modular design allows easy addition of new token types
+- Centralized exports simplify token usage across components
+
+**Implementation Details**:
+- Created base token interfaces in types/tokens.ts
+- Implemented individual token classes with specific behaviors
+- Set up comprehensive test infrastructure for token components
+- Used index.ts as a facade for token exports
+
 - Integrated providers into App component hierarchy

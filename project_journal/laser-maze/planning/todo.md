@@ -26,17 +26,17 @@ Priority tasks focused on core gameplay functionality.
   - [x] Create grid data structure
   - [x] Implement grid state management
   - [x] Add grid cell component
-- [ ] Create basic token system with essential types:
-  - [ ] Laser source token
-    - [ ] Base token structure
-    - [ ] Orientation handling
-    - [ ] Beam emission logic
-  - [ ] Mirror token
-    - [ ] Reflection calculations
-    - [ ] Orientation states
-  - [ ] Target token
-    - [ ] Activation detection
-    - [ ] State management
+- [x] Create basic token system with essential types:
+  - [x] Laser source token
+    - [x] Base token structure
+    - [x] Orientation handling
+    - [x] Beam emission logic
+  - [x] Mirror token
+    - [x] Reflection calculations
+    - [x] Orientation states
+  - [x] Target token
+    - [x] Activation detection
+    - [x] State management
 - [ ] Develop core laser physics:
   - [ ] Basic beam propagation
     - [ ] Straight line movement
