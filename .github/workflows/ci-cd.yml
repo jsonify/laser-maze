@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -40,6 +45,11 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -62,6 +72,11 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
