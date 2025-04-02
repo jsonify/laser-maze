@@ -29,7 +29,6 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'build', // Specify the output directory for Netlify
     chunkSizeWarningLimit: 1600,
     sourcemap: process.env.NODE_ENV !== 'production',
   },
