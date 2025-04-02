@@ -18,5 +18,6 @@ export default {
         '**/__tests__/**',
       ],
     },
+    setupFiles: ['./src/setupTests.ts'],
   },
 };
