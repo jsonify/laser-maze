@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { render, renderHook } from '@testing-library/react';
 import { SettingsContextProvider, SettingsContext } from './SettingsContext';
 
 describe('SettingsContext', () => {

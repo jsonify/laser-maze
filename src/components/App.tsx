@@ -1,14 +1,16 @@
 import React from 'react';
-import { GameContextProvider } from '../contexts/GameContext';
+import { GameProvider } from '../contexts/GameContext'; // Corrected import name
 import { SettingsContextProvider } from '../contexts/SettingsContext';
 
 const App: React.FC = () => {
   return (
-    <GameContextProvider>
+    <GameProvider>
+      {' '}
+      // Corrected component name
       <SettingsContextProvider>
         <div>Laser Maze App</div>
       </SettingsContextProvider>
-    </GameContextProvider>
+    </GameProvider> // Corrected component name
   );
 };
 
