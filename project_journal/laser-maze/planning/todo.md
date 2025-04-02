@@ -4,14 +4,14 @@
 Priority tasks focused on core gameplay functionality.
 
 ### 1. Project Foundation (Days 1-3)
-- [ ] Initialize React + TypeScript project structure
+- [x] Initialize React + TypeScript project structure
   - [x] Set up basic project with TypeScript
   - [x] Configure ESLint and other tools
-  - [ ] Set up testing framework (Vitest + @testing-library/react)
-- [ ] Set up build system and development environment
+  - [x] Set up testing framework (Vitest + @testing-library/react)
+- [x] Set up build system and development environment
   - [x] Configure webpack/build tools
-  - [ ] Set up development server
-  - [ ] Configure hot reloading
+  - [x] Set up development server
+  - [x] Configure hot reloading
 - [ ] Implement basic component architecture
   - [ ] Create root App component
   - [ ] Set up component directory structure
