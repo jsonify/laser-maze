@@ -103,60 +103,50 @@ export class LaserPhysics {
       targetHits: [],
     };
 
-    let currentPos = { ...startPos };
-    let currentDirection = direction;
-    let steps = 0;
-    const MAX_STEPS = 100;
+    const queue: { pos: Position; dir: Orientation }[] = [{ pos: startPos, dir: direction }];
 
-    while (steps < MAX_STEPS) {
-      steps++;
-      const nextPos = this.getNextPosition(currentPos, currentDirection);
+    let hasReflected = false;
 
-      // Stop if we hit grid boundary
+    while (queue.length > 0) {
+      const { pos, dir } = queue.shift()!;
+      const nextPos = this.getNextPosition(pos, dir);
+
       if (!this.isValidPosition(nextPos)) {
-        break;
+        continue;
       }
 
       path.positions.push({ ...nextPos });
       const cell = grid[nextPos.y][nextPos.x];
 
-      // Handle mirror reflection
-      if (cell.token?.type === 'mirror') {
-        const incomingDirection = currentDirection;
-        const outgoingDirection = this.getMirrorReflection(
-          currentDirection,
-          cell.token.orientation
-        );
-
-        path.reflectionPoints.push({
-          position: { ...nextPos },
-          incomingDirection,
-          outgoingDirection,
-        });
-
-        currentDirection = outgoingDirection;
-        currentPos = { ...nextPos };
+      // Add next position to queue if not hitting a token
+      if (!cell.token) {
+        queue.push({ pos: nextPos, dir });
         continue;
       }
 
-      // Handle target hits
-      if (cell.token?.type === 'target') {
-        if (this.isTargetHit(currentDirection, cell.token.orientation)) {
+      // Handle mirror reflection
+      if (cell.token.type === 'mirror' && !hasReflected) {
+        const newDirection = this.getMirrorReflection(dir, cell.token.orientation);
+        path.reflectionPoints.push({
+          position: { ...nextPos },
+          incomingDirection: dir,
+          outgoingDirection: newDirection,
+        });
+
+        queue.push({ pos: nextPos, dir: newDirection });
+        hasReflected = true;
+        continue;
+      }
+
+      // Handle target hit
+      if (cell.token.type === 'target') {
+        if (this.isTargetHit(dir, cell.token.orientation)) {
           path.targetHits.push({
             position: { ...nextPos },
-            hitDirection: currentDirection,
+            hitDirection: dir,
           });
         }
-        break;
       }
-
-      // Stop at any other token
-      if (cell.token) {
-        break;
-      }
-
-      // Move to next position
-      currentPos = { ...nextPos };
     }
 
     return path;
