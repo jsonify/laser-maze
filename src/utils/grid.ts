@@ -36,7 +36,9 @@ export function placeToken(grid: Grid, x: number, y: number, token: Token): Grid
     throw new Error('Invalid coordinates');
   }
 
-  const newGrid = grid.map((row) => [...row]);
+  const newGrid: Grid = grid.map((row) =>
+    row.map((cell) => ({ ...cell, token: token ? { ...token } : null }))
+  );
   newGrid[y][x] = { token };
   return newGrid;
 }
